@@ -1,0 +1,71 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = 'Josué Chavarría — Systems Engineer & Automation Architect',
+  description = 'Construyo sistemas en Go, Rust y TypeScript que automatizan operaciones. Logística geoespacial, infraestructura IA y software a medida en Costa Rica.',
+  image = '/og.png',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Josué Chavarría Montealegre',
+  jobTitle: 'CTO & Automation Architect',
+  worksFor: { '@type': 'Organization', name: 'ISTMO Center' },
+  address: { '@type': 'PostalAddress', addressCountry: 'CR', addressLocality: 'San José' },
+  sameAs: [
+    'https://github.com/MileniumTick',
+    'https://www.linkedin.com/in/josue-chavarria-montealegre-144505207/',
+  ],
+  knowsAbout: ['Go', 'Rust', 'TypeScript', 'PostGIS', 'Docker', 'Kubernetes', 'AI Automation'],
+};
+---
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="canonical" href={canonical} />
+
+  <!-- Primary SEO -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="author" content="Josué Chavarría" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={new URL(image, Astro.site)} />
+  <meta property="og:locale" content="es_CR" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Structured data -->
+  <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
+
+  <slot name="head" />
+</head>
+<body>
+  <slot />
+</body>
+</html>

@@ -1,0 +1,18 @@
+node_modules/
+dist/
+.env
+.env.*
+.DS_Store
+
+# Astro generated
+.astro/
+
+# Impeccable / agent tooling
+.claude/
+.codex/
+.cursor/
+.gemini/
+.kiro/
+.pi/
+.agents/
+.impeccable/

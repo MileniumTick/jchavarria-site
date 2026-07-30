@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jchavarria.dev/sitemap-index.xml
